@@ -1,0 +1,38 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="UnnamedClickerGame"
+config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/image="uid://cujcowd0ha8p3"
+config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=400
+window/size/viewport_height=400
+window/stretch/mode="viewport"
+window/stretch/scale=2.0
+window/stretch/scale_mode="integer"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
+
+[physics]
+
+3d/physics_engine="Jolt Physics"
+
+[rendering]
+
+rendering_device/driver.windows="d3d12"
+renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.1882353, 0.38431373, 0.1882353, 1)

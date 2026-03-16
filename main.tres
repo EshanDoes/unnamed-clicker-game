@@ -1,0 +1,8 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://dmsqd28cn2ie8"]
+
+[ext_resource type="FontFile" uid="uid://bh1carky78oy5" path="res://DigitalDisco.ttf" id="1_24q3n"]
+
+[resource]
+font = ExtResource("1_24q3n")
+font_size = 32
+font_color = Color(0.42745098, 0.7411765, 0.08627451, 1)
