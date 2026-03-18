@@ -2,6 +2,7 @@ extends Node
 
 @onready var button = $"Monitor Button"
 @onready var clicksCounter = $"Click Counter"
+@onready var statsText = $Stats
 @onready var timer = $Timer
 @onready var shop = $Shop
 @onready var shopItems = $Shop/Items.get_children()
@@ -59,6 +60,8 @@ func _physics_process(delta: float) -> void:
 
 
 func shortenNumber(num):
+	if round(num) == num:
+		num = roundi(num)
 	if num >= 1000000000:
 		return str(floorf(num/100000000)/10) + "b"
 	elif num >= 1000000:
@@ -100,8 +103,7 @@ func _click_item_bought(event: InputEvent) -> void:
 			add_clicks(itemCosts[0]*-1)
 			@warning_ignore("narrowing_conversion")
 			itemCosts[0] = itemCosts[0] * 1.05
-			var costText = shortenNumber(itemCosts[0])
-			shopItems[0].get_node("Cost").text = "c" + costText
+			update_stats_and_costs()
 		else:
 			shopItems[0].get_node("Icon").rotation = 0.2
 
@@ -114,8 +116,7 @@ func _cps_item_bought(event: InputEvent) -> void:
 			add_clicks(itemCosts[1]*-1)
 			@warning_ignore("narrowing_conversion")
 			itemCosts[1] = itemCosts[1] * 1.02
-			var costText = shortenNumber(itemCosts[1])
-			shopItems[1].get_node("Cost").text = "c" + costText
+			update_stats_and_costs()
 		else:
 			shopItems[1].get_node("Icon").rotation = 0.2
 
@@ -128,7 +129,11 @@ func _mult_item_bought(event: InputEvent) -> void:
 			add_clicks(itemCosts[2]*-1)
 			@warning_ignore("narrowing_conversion")
 			itemCosts[2] = itemCosts[2] * 3
-			var costText = shortenNumber(itemCosts[2])
-			shopItems[2].get_node("Cost").text = "c" + costText
+			update_stats_and_costs()
 		else:
 			shopItems[2].get_node("Icon").rotation = 0.2
+
+func update_stats_and_costs():
+	for item in shopItems:
+		item.get_node("Cost").text = "c" + shortenNumber(itemCosts[item.get_index()])
+	statsText.text = "CPC: " + shortenNumber(clickIncrement) + "|CPS: " + shortenNumber(autoClicksPerSecond)

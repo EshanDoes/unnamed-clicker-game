@@ -9,11 +9,15 @@
 [ext_resource type="LabelSettings" uid="uid://dg8behsoubd8e" path="res://main.tres" id="6_tefeu"]
 [ext_resource type="Texture2D" uid="uid://kul6xldptr73" path="res://sprites/cpsIcon.png" id="8_tipki"]
 [ext_resource type="Texture2D" uid="uid://drfbdjkrw6i4m" path="res://sprites/multIcon.png" id="9_85g3d"]
+[ext_resource type="LabelSettings" uid="uid://yburh2xoh15v" path="res://info.tres" id="10_choun"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
 font = ExtResource("3_tbgi4")
 font_size = 32
 font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
+shadow_size = 0
+shadow_color = Color(0.05882353, 0.21960784, 0.05882353, 1)
+shadow_offset = Vector2(2, 2)
 
 [node name="Control" type="Control" unique_id=1631087575]
 texture_filter = 1
@@ -43,6 +47,10 @@ offset_bottom = 132.0
 pivot_offset = Vector2(32, 32)
 texture = ExtResource("1_o5qli")
 
+[node name="Timer" type="Timer" parent="." unique_id=1658930873]
+autostart = true
+ignore_time_scale = true
+
 [node name="Click Counter" type="Label" parent="." unique_id=1230279936]
 layout_mode = 0
 offset_right = 200.0
@@ -52,9 +60,16 @@ label_settings = SubResource("LabelSettings_85g3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Timer" type="Timer" parent="." unique_id=1658930873]
-autostart = true
-ignore_time_scale = true
+[node name="Stats" type="Label" parent="." unique_id=1832012876]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 168.0
+offset_right = 114.0
+offset_bottom = 200.0
+text = "CPC: 1|CPS: 0"
+label_settings = ExtResource("10_choun")
+vertical_alignment = 2
+paragraph_separator = "|"
 
 [node name="Shop" type="Control" parent="." unique_id=1815183039]
 z_index = 1
