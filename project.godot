@@ -11,9 +11,12 @@ config_version=5
 [application]
 
 config/name="UnnamedClickerGame"
+config/version="0.75"
+run/main_scene="uid://cne8djbgrntjj"
 config/features=PackedStringArray("4.6", "Mobile")
+boot_splash/bg_color=Color(0.1882353, 0.38039216, 0.1882353, 1)
 boot_splash/image="uid://cujcowd0ha8p3"
-config/icon="res://icon.svg"
+config/icon="uid://ftacesgsrmaf"
 
 [display]
 
@@ -35,4 +38,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
-environment/defaults/default_clear_color=Color(0.1882353, 0.38431373, 0.1882353, 1)
+environment/defaults/default_clear_color=Color(0.31764707, 0.5529412, 0.13725491, 1)
+environment/icon="res://icon.svg"
+environment/main_scene=""
+environment/bg_color=Color(0.14, 0.14, 0.14, 1)

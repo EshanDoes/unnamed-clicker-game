@@ -30,7 +30,7 @@ func _process(delta: float) -> void:
 # Animations for every animated node
 func _physics_process(delta: float) -> void:
 	button.size = Vector2(buttonSize, buttonSize)
-	button.position = Vector2(100-buttonSize/2, 100-buttonSize/2)
+	button.position = Vector2(100-buttonSize/2.0, 100-buttonSize/2.0)
 	if buttonSize > 64.1: buttonSize -= delta*10*(buttonSize-64)
 	else: buttonSize = 64
 	
@@ -51,11 +51,22 @@ func _physics_process(delta: float) -> void:
 		if iconSize > 32.1: iconSize -= delta*10*(iconSize-32)
 		else: iconSize = 32
 		icon.size = Vector2(iconSize, iconSize)
-		icon.position = Vector2(14-(iconSize-32)/2, 8-(iconSize-32)/2)
+		icon.position = Vector2(15-(iconSize-32)/2, 8-(iconSize-32)/2)
 		var iconRotation = icon.rotation
 		if iconRotation > 0.01:
 			icon.rotation -= delta*5*iconRotation
 		else: iconRotation = 0
+
+
+func shortenNumber(num):
+	if num >= 1000000000:
+		return str(floorf(num/100000000)/10) + "b"
+	elif num >= 1000000:
+		return str(floorf(num/100000)/10) + "m"
+	elif num >= 1000:
+		return str(floorf(num/100)/10) + "k"
+	else:
+		return str(num)
 
 
 func _on_tv_clicked(event: InputEvent) -> void:
@@ -68,15 +79,7 @@ func add_clicks(amount = autoClicksPerSecond):
 	if round(clicks) == clicks:
 		clicks = roundi(clicks)
 	
-	var clickDisplay = ""
-	if clicks >= 1000000000:
-		clickDisplay = str(floorf(clicks/100000000)/10) + "b"
-	elif clicks >= 1000000:
-		clickDisplay = str(floorf(clicks/100000)/10) + "m"
-	elif clicks >= 1000:
-		clickDisplay = str(floorf(clicks/100)/10) + "k"
-	else:
-		clickDisplay = str(clicks)
+	var clickDisplay = shortenNumber(clicks)
 	
 	if amount != 0:
 		clicksCounter.text = clickDisplay
@@ -95,7 +98,37 @@ func _click_item_bought(event: InputEvent) -> void:
 			clickIncrement += 1
 			shopItems[0].get_node("Icon").size = Vector2(44, 44)
 			add_clicks(itemCosts[0]*-1)
+			@warning_ignore("narrowing_conversion")
 			itemCosts[0] = itemCosts[0] * 1.05
-			shopItems[0].get_node("Cost").text = "Cost: " + str(itemCosts[0])
+			var costText = shortenNumber(itemCosts[0])
+			shopItems[0].get_node("Cost").text = "c" + costText
 		else:
 			shopItems[0].get_node("Icon").rotation = 0.2
+
+
+func _cps_item_bought(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if itemCosts[1] <= clicks:
+			autoClicksPerSecond += 1
+			shopItems[1].get_node("Icon").size = Vector2(44, 44)
+			add_clicks(itemCosts[1]*-1)
+			@warning_ignore("narrowing_conversion")
+			itemCosts[1] = itemCosts[1] * 1.02
+			var costText = shortenNumber(itemCosts[1])
+			shopItems[1].get_node("Cost").text = "c" + costText
+		else:
+			shopItems[1].get_node("Icon").rotation = 0.2
+
+
+func _mult_item_bought(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if itemCosts[2] <= clicks:
+			clickIncrement = clickIncrement * 2
+			shopItems[2].get_node("Icon").size = Vector2(44, 44)
+			add_clicks(itemCosts[2]*-1)
+			@warning_ignore("narrowing_conversion")
+			itemCosts[2] = itemCosts[2] * 3
+			var costText = shortenNumber(itemCosts[2])
+			shopItems[2].get_node("Cost").text = "c" + costText
+		else:
+			shopItems[2].get_node("Icon").rotation = 0.2

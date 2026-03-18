@@ -7,11 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dl8higb50s1w1" path="res://tab.png" id="4_jyhfs"]
 [ext_resource type="Texture2D" uid="uid://cwdyfscenluf4" path="res://sprites/clickIcon.png" id="6_o6xl0"]
 [ext_resource type="LabelSettings" uid="uid://dg8behsoubd8e" path="res://main.tres" id="6_tefeu"]
+[ext_resource type="Texture2D" uid="uid://kul6xldptr73" path="res://sprites/cpsIcon.png" id="8_tipki"]
+[ext_resource type="Texture2D" uid="uid://drfbdjkrw6i4m" path="res://sprites/multIcon.png" id="9_85g3d"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_tefeu"]
+[sub_resource type="LabelSettings" id="LabelSettings_85g3d"]
 font = ExtResource("3_tbgi4")
 font_size = 32
-font_color = Color(0.42745098, 0.7411765, 0.08627451, 1)
+font_color = Color(0.1882353, 0.38431373, 0.1882353, 1)
 
 [node name="Control" type="Control" unique_id=1631087575]
 texture_filter = 1
@@ -24,9 +26,10 @@ offset_bottom = -200.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0wfyh")
-itemCosts = [20]
+itemCosts = Array[int]([20, 70, 5000])
 
 [node name="Screen Reference" type="ReferenceRect" parent="." unique_id=922520914]
+visible = false
 layout_mode = 0
 offset_right = 200.0
 offset_bottom = 200.0
@@ -45,7 +48,7 @@ layout_mode = 0
 offset_right = 200.0
 offset_bottom = 32.0
 text = "0"
-label_settings = SubResource("LabelSettings_tefeu")
+label_settings = SubResource("LabelSettings_85g3d")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -103,17 +106,20 @@ anchor_left = 0.05
 anchor_top = 0.25
 anchor_right = 0.95
 anchor_bottom = 0.95
+offset_left = -7.0
+offset_right = 7.0
+offset_bottom = 4.0
 columns = 3
 
 [node name="Click" type="Control" parent="Shop/Items" unique_id=272291305]
-custom_minimum_size = Vector2(56, 66)
+custom_minimum_size = Vector2(62, 70)
 layout_mode = 2
 
 [node name="Icon" type="TextureRect" parent="Shop/Items/Click" unique_id=1766124987]
 layout_mode = 0
-offset_left = 14.0
+offset_left = 15.0
 offset_top = 8.0
-offset_right = 46.0
+offset_right = 47.0
 offset_bottom = 40.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
 texture = ExtResource("6_o6xl0")
@@ -121,13 +127,13 @@ expand_mode = 1
 
 [node name="Item Reference" type="ReferenceRect" parent="Shop/Items/Click" unique_id=301679883]
 layout_mode = 0
-offset_right = 60.0
+offset_right = 62.0
 offset_bottom = 70.0
 
 [node name="Item" type="Label" parent="Shop/Items/Click" unique_id=707296155]
 layout_mode = 0
 offset_top = -12.0
-offset_right = 60.0
+offset_right = 62.0
 offset_bottom = 58.0
 text = "+1 Clicks"
 label_settings = ExtResource("6_tefeu")
@@ -136,9 +142,85 @@ vertical_alignment = 2
 
 [node name="Cost" type="Label" parent="Shop/Items/Click" unique_id=255251505]
 layout_mode = 0
-offset_right = 60.0
+offset_right = 62.0
 offset_bottom = 70.0
-text = "Cost: 20"
+text = "c20"
+label_settings = ExtResource("6_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="CPS" type="Control" parent="Shop/Items" unique_id=634461701]
+custom_minimum_size = Vector2(62, 70)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Shop/Items/CPS" unique_id=758778624]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("8_tipki")
+expand_mode = 1
+
+[node name="Item Reference" type="ReferenceRect" parent="Shop/Items/CPS" unique_id=2068901212]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 70.0
+
+[node name="Item" type="Label" parent="Shop/Items/CPS" unique_id=1759340758]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 62.0
+offset_bottom = 58.0
+text = "+1 CPS"
+label_settings = ExtResource("6_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Cost" type="Label" parent="Shop/Items/CPS" unique_id=121221100]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 70.0
+text = "c70"
+label_settings = ExtResource("6_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Mult" type="Control" parent="Shop/Items" unique_id=208675203]
+custom_minimum_size = Vector2(62, 70)
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="Shop/Items/Mult" unique_id=1182110976]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 8.0
+offset_right = 47.0
+offset_bottom = 40.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+texture = ExtResource("9_85g3d")
+expand_mode = 1
+
+[node name="Item Reference" type="ReferenceRect" parent="Shop/Items/Mult" unique_id=989581560]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 70.0
+
+[node name="Item" type="Label" parent="Shop/Items/Mult" unique_id=779033818]
+layout_mode = 0
+offset_top = -12.0
+offset_right = 62.0
+offset_bottom = 58.0
+text = "x2 Clicks"
+label_settings = ExtResource("6_tefeu")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Cost" type="Label" parent="Shop/Items/Mult" unique_id=246995165]
+layout_mode = 0
+offset_right = 62.0
+offset_bottom = 70.0
+text = "c5.0k"
 label_settings = ExtResource("6_tefeu")
 horizontal_alignment = 1
 vertical_alignment = 2
@@ -146,3 +228,5 @@ vertical_alignment = 2
 [connection signal="gui_input" from="Monitor Button" to="." method="_on_tv_clicked"]
 [connection signal="gui_input" from="Shop/Shop Button" to="." method="_shop_button_pressed"]
 [connection signal="gui_input" from="Shop/Items/Click/Item Reference" to="." method="_click_item_bought"]
+[connection signal="gui_input" from="Shop/Items/CPS/Item Reference" to="." method="_cps_item_bought"]
+[connection signal="gui_input" from="Shop/Items/Mult/Item Reference" to="." method="_mult_item_bought"]
